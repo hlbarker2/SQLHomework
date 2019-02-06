@@ -7,7 +7,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `terminate_student_enrollment`(
 BEGIN
 UPDATE classparticipant
 SET EndDate = EndDate_in
-WHERE ID_Student = StudentID_in
+WHERE ID_Student = (SELECT ID_Student FROM student WHERE StudentID = StudentID_in)
 AND
 ID_Class = (
 	SELECT ID_Class FROM class c
